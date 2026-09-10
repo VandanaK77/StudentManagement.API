@@ -9,10 +9,12 @@ namespace StudentManagement.API.Controllers
     [ApiController]
     public class StudentController : ControllerBase
     {
+        private readonly ILogger<StudentController> _logger;
         private readonly IStudentService _studentService;
-        public StudentController(IStudentService studentService)
+        public StudentController(IStudentService studentService, Logger<StudentController> logger)
         {
             _studentService = studentService;
+            _logger = logger;
         }
         // GET /api/student
         [HttpGet]
@@ -25,9 +27,13 @@ namespace StudentManagement.API.Controllers
         [HttpGet("{id:int}")]
         public IActionResult GetById(int id)
         {
+            _logger.LogInformation("Fetching student with Id {Id}", id);
             var student = _studentService.GetById(id);
-            if (student is null)
+            if (student == null)
+            {
+                _logger.LogWarning("Student with Id {Id} not found", id);
                 return NotFound($"Student with Id {id} not found.");
+            }
             return Ok(student);
         }
         // POST /api/student
