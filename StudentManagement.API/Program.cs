@@ -15,6 +15,7 @@ builder.Services.AddControllers()
 builder.Services.AddEndpointsApiExplorer();
 builder.Services.AddSwaggerGen();
 
+builder.Services.AddSingleton<IProductService, ProductService>();
 builder.Services.AddSingleton<IStudentService, StudentService>();
 
 builder.Services.AddCors(options =>
