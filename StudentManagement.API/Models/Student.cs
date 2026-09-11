@@ -1,4 +1,4 @@
-﻿namespace StudentManagement.API.Controllers.Models
+﻿namespace StudentManagement.API.Models
 {
     public class Student
     {

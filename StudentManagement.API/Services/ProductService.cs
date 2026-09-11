@@ -1,4 +1,4 @@
-﻿using StudentManagement.API.Controllers.Models;
+﻿using StudentManagement.API.Models;
 
 namespace StudentManagement.API.Services
 {
