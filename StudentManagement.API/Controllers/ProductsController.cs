@@ -6,6 +6,8 @@ namespace StudentManagement.API.Controllers
 {
     public class ProductsController : Controller
     {
+        [Route("api/[controller]")]
+        [ApiController]
         private readonly IProductService _productService;
         public ProductsController(IProductService productService)
         {
