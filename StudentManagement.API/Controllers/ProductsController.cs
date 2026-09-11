@@ -1,23 +1,24 @@
 ﻿using Microsoft.AspNetCore.Mvc;
-using StudentManagement.API.Models;
+using StudentManagement.API.Controllers.Models;
 using StudentManagement.API.Services;
 
 namespace StudentManagement.API.Controllers
 {
+    [Route("api/[controller]")]
+    [ApiController]
     public class ProductsController : Controller
-    {
-        [Route("api/[controller]")]
-        [ApiController]
-        private readonly IProductService _productService;
+    {        private readonly IProductService _productService;
         public ProductsController(IProductService productService)
         {
             _productService = productService;
         }
+
         [HttpGet]
         public IActionResult GetAll()
         {
             return Ok(_productService.GetAll());
         }
+
         [HttpGet("{id:int}")]
         public IActionResult GetById(int id)
         {
@@ -26,6 +27,7 @@ namespace StudentManagement.API.Controllers
                 return NotFound($"Product with Id {id} not found.");
             return Ok(product);
         }
+
         [HttpPost]
         public IActionResult Add(Product product)
         {

@@ -1,4 +1,4 @@
-﻿namespace StudentManagement.API.Models
+﻿namespace StudentManagement.API.Controllers.Models
 {
     public class Product
     {
