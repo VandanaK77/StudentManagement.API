@@ -32,6 +32,16 @@ namespace StudentManagement.API.Controllers
         [HttpPost]
         public IActionResult Add(Product product)
         {
+            if (string.IsNullOrWhiteSpace(product.Name))
+            {
+                return BadRequest("Product name is required.");
+            }
+
+            if (product.Price <= 0)
+            {
+                return BadRequest("Product price must be greater than zero.");
+            }
+
             var created = _productService.Add(product);
             return CreatedAtAction(nameof(GetById), new { id = created.Id }, created);
         }
